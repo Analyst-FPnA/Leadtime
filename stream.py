@@ -216,5 +216,5 @@ with col[1]:
     create_line_chart(df_line, x_column='Tanggal PO', y_column='Nomor PO', title="DAILY BACKDATE")
 with col[2]:
     df_bar = df_eksternal[(df_eksternal['Bulan PO']==bulan) & (df_eksternal['PIC Responsible']=='Logistic') 
-             & (df_eksternal['Kategori PO(Datang)-PR(Create)']=='Backdate') & (df_eksternal['Kategori Item']=='Eksternal Logistic')].groupby(['Rute'])[['Nomor PO']].nunique()
+             & (df_eksternal['Kategori PO(Datang)-PR(Create)']=='Backdate') & (df_eksternal['Kategori Item']=='Eksternal Logistic')].groupby(['Rute'])[['Nomor PO']].nunique().reset_index()
     create_percentage_barchart(df_bar, 'Rute', 'Nomor PO')
