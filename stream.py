@@ -49,7 +49,6 @@ if 'df_internal' not in locals():
 
 def create_pie_chart(df, labels_column, values_column, title="Pie Chart"):
 
-    """
     # Membuat grafik pie menggunakan Plotly
     fig = px.pie(
         df, 
