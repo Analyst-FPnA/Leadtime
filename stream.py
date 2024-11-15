@@ -55,7 +55,7 @@ def create_pie_chart(df, labels_column, values_column, title="Pie Chart"):
         df, 
         names=labels_column, 
         values=values_column, 
-        title=title,
+        title='',
         hole=0.3,  # Membuat grafik menjadi doughnut
         color_discrete_sequence=px.colors.sequential.RdBu  # Skema warna yang lebih estetis
     )
@@ -68,11 +68,6 @@ def create_pie_chart(df, labels_column, values_column, title="Pie Chart"):
     )
 
     fig.update_layout(
-        title=dict(
-            text=title,
-            font=dict(size=24, color='black'),
-            x=0.5  # Pusatkan judul
-        ),
         showlegend=True,  # Menampilkan legenda
         legend=dict(
             orientation="h",  # Menampilkan legenda secara horizontal
@@ -82,7 +77,7 @@ def create_pie_chart(df, labels_column, values_column, title="Pie Chart"):
             x=0.5
         )
     )
-    fig.update_layout(width=400, height=300)
+    fig.update_layout(width=600, height=600)
     # Menampilkan grafik di Streamlit
     st.plotly_chart(fig)
 
