@@ -117,7 +117,7 @@ def create_percentage_barchart(df, x_col, y_col):
                  x=x_col, 
                  y='Percentage', 
                  labels={x_col: 'Category', 'Percentage': 'Percentage (%)'},
-                 color_discrete_sequence=px.colors.sequential.RdBu[1])
+                 color_discrete_sequence=px.colors.sequential.RdBu)
     
     # Menambahkan nilai persentase pada setiap bar
     fig.update_traces(texttemplate='%{y:.2f}%', textposition='inside', insidetextanchor='middle')
