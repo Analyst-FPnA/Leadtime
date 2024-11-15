@@ -197,6 +197,7 @@ with col[3]:
                  hide_index=True
     )
 
+st.markdown('### Leadtime-Internal')
 df_eksternal['Tanggal PO'] = pd.to_datetime(df_eksternal['Tanggal PO'])
 col = st.columns([1,2,1])
 with col[0]:
