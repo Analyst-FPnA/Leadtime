@@ -108,7 +108,22 @@ def create_line_chart(df, x_column, y_column, title="Line Chart"):
     # Menampilkan grafik di Streamlit
     st.plotly_chart(fig)
 
-
+def create_percentage_barchart(df, x_col, y_col):
+    # Menghitung persentase berdasarkan y_col
+    df['Percentage'] = (df[y_col] / df[y_col].sum()) * 100
+    
+    # Membuat bar chart menggunakan Plotly
+    fig = px.bar(df, 
+                 x=x_col, 
+                 y='Percentage', 
+                 labels={x_col: 'Category', 'Percentage': 'Percentage (%)'},
+                 title=f'Bar Chart Showing Percentage of {y_col}')
+    
+    # Menambahkan nilai persentase pada setiap bar
+    fig.update_traces(texttemplate='%{y:.2f}%', textposition='inside', insidetextanchor='middle')
+    
+    # Menampilkan grafik
+    st.plotly_chart(fig)
 
 list_bulan = [
         'January', 'February', 'March', 'April', 'May', 'June',
@@ -130,7 +145,10 @@ with col[1]:
     
     create_line_chart(df_line, x_column='Tanggal IT Kirim', y_column='Nomor IT Kirim', title="DAILY BACKDATE")
 with col[2]:
-    df_pie2 = df_internal[(df_internal['Bulan Kirim']==bulan) & (df_internal['Kirim #2'].isin(['Resto','WH/DC'] if pic=='All' else [pic]))
+    df_bar = df_internal[(df_internal['Bulan Kirim']==bulan) & (df_internal['Kirim #2'].isin(['Resto','WH/DC'] if pic=='All' else [pic]))
              & (df_internal['Kategori Leadtime SJ']=='Backdate')].groupby(['Terima #2'])[['Nomor IT Kirim']].nunique().reset_index()
-    create_pie_chart(df_pie2, labels_column='Terima #2', values_column='Nomor IT Kirim', title="OUTGOING BACKDATE")
-
+    create_percentage_barchart(df_bar, 'Terima #2', 'Nomor IT Kirim')
+with col[3]:
+    st.dataframe(df_internal[(df_internal['Bulan Kirim']==bulan) & (df_internal['Kirim #2'].isin(['Resto','WH/DC'] if pic=='All' else [pic]))
+             & (df_internal['Kategori Leadtime SJ']=='Backdate')].groupby(['Leadtime SJ Group','Rute Global'])[['Nomor IT Kirim']].nunique().reset_index().pivot(index='Rute Global',columns='Leadtime SJ Group',values='Nomor IT Kirim')
+    )
