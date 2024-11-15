@@ -217,4 +217,5 @@ with col[1]:
 with col[2]:
     df_bar = df_eksternal[(df_eksternal['Bulan PO']==bulan) & (df_eksternal['PIC Responsible']=='Logistic') 
              & (df_eksternal['Kategori PO(Datang)-PR(Create)']=='Backdate') & (df_eksternal['Kategori Item']=='Eksternal Logistic')].groupby(['Rute'])[['Nomor PO']].nunique().reset_index()
+    st.dataframe(df_bar)
     create_percentage_barchart(df_bar, 'Rute', 'Nomor PO')
