@@ -92,7 +92,7 @@ def create_line_chart(df, x_column, y_column, title="Line Chart"):
     - title: Judul grafik (default: "Line Chart")
     """
     # Membuat line chart menggunakan Plotly
-    fig = px.line(df, x=x_column, y=y_column, title=title)
+    fig = px.line(df, x=x_column, y=y_column)
     color = px.colors.sequential.RdBu[0]
     # Kustomisasi tampilan
     fig.update_traces(
