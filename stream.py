@@ -85,7 +85,41 @@ def create_pie_chart(df, labels_column, values_column, title="Pie Chart"):
     
     # Menampilkan grafik di Streamlit
     st.plotly_chart(fig)
+
+def create_line_chart(df, x_column, y_column, title="Line Chart"):
+    """
+    Membuat grafik garis (line chart) dengan Plotly dan menampilkannya di Streamlit.
     
+    Parameters:
+    - df: DataFrame yang berisi data untuk grafik
+    - x_column: Nama kolom yang ingin digunakan sebagai sumbu X
+    - y_column: Nama kolom yang ingin digunakan sebagai sumbu Y
+    - title: Judul grafik (default: "Line Chart")
+    """
+    # Membuat line chart menggunakan Plotly
+    fig = px.line(df, x=x_column, y=y_column, title=title)
+    
+    # Kustomisasi tampilan
+    fig.update_traces(
+        line=dict(color='blue', width=2.5),  # Warna garis biru dengan ketebalan 2.5
+        mode='lines+markers'  # Menampilkan garis dan titik data
+    )
+    
+    fig.update_layout(
+        title=dict(
+            text=title,
+            font=dict(size=20),
+            x=0.5  # Pusatkan judul
+        ),
+        xaxis_title=x_column,
+        yaxis_title=y_column
+    )
+    
+    # Menampilkan grafik di Streamlit
+    st.plotly_chart(fig)
+
+
+
 list_bulan = [
         'January', 'February', 'March', 'April', 'May', 'June',
         'July', 'August', 'September', 'October', 'November', 'December']
@@ -99,3 +133,6 @@ df_pie = df_internal[(df_internal['Bulan Kirim']==bulan) & (df_internal['Kirim #
 
 create_pie_chart(df_pie, labels_column='Kategori Leadtime SJ', values_column='Nomor IT Kirim', title="OUTGOING BACKDATE")
 
+df_line = df_internal2[(df_internal2['Bulan Kirim']==bulan) & (df_internal2['Kirim #2'].isin(['Resto','WH/DC'] if pic=='All' else [pic]))
+             & (df_internal2['Kategori Leadtime SJ']=='Backdate')].groupby(['Tanggal IT Kirim'])[['Nomor IT Kirim']].nunique().reset_index()
+create_line_chart(df_line, x_column='Tanggal IT Kirim', y_column='Nomor IT Kirim', title="DAILY BACKDATE")
