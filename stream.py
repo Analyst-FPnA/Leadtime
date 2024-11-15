@@ -130,7 +130,7 @@ list_bulan = [
         
 bulan = st.selectbox("MONTH:", list_bulan, index=9, on_change=reset_button_state)
 
-st.markdown('## LEADTIME INTERNAL')
+st.markdown('### Leadtime-Internal')
 pic = st.selectbox("PIC RESPONSIBLE:", ['All','WH/DC','Resto'], index=0, on_change=reset_button_state)
 bulan = bulan[:3]+'-24'
 df_internal['Rute Global'] = pd.Categorical(df_internal['Rute Global'],['WH/DC to WH/DC','WH/DC to Resto','Resto to WH/DC','Resto to Resto'])
