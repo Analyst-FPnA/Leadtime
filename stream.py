@@ -133,6 +133,6 @@ df_pie = df_internal[(df_internal['Bulan Kirim']==bulan) & (df_internal['Kirim #
 
 create_pie_chart(df_pie, labels_column='Kategori Leadtime SJ', values_column='Nomor IT Kirim', title="OUTGOING BACKDATE")
 
-df_line = df_internal2[(df_internal2['Bulan Kirim']==bulan) & (df_internal2['Kirim #2'].isin(['Resto','WH/DC'] if pic=='All' else [pic]))
-             & (df_internal2['Kategori Leadtime SJ']=='Backdate')].groupby(['Tanggal IT Kirim'])[['Nomor IT Kirim']].nunique().reset_index()
+df_line = df_internal[(df_internal['Bulan Kirim']==bulan) & (df_internal['Kirim #2'].isin(['Resto','WH/DC'] if pic=='All' else [pic]))
+             & (df_internal['Kategori Leadtime SJ']=='Backdate')].groupby(['Tanggal IT Kirim'])[['Nomor IT Kirim']].nunique().reset_index()
 create_line_chart(df_line, x_column='Tanggal IT Kirim', y_column='Nomor IT Kirim', title="DAILY BACKDATE")
