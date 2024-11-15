@@ -110,17 +110,16 @@ def create_line_chart(df, x_column, y_column, title="Line Chart"):
 
 def create_percentage_barchart(df, x_col, y_col):
     # Menghitung persentase berdasarkan y_col
-    df['Percentage'] = (df[y_col] / df[y_col].sum()) * 100
     
     # Membuat bar chart menggunakan Plotly
     fig = px.bar(df, 
                  x=x_col, 
-                 y='Percentage', 
-                 labels={x_col: 'Category', 'Percentage': 'Percentage (%)'},
+                 y=y_col, 
+                 labels={x_col: 'Department', y_col: 'Total Trx'},
                  color_discrete_sequence=px.colors.sequential.RdBu)
     
     # Menambahkan nilai persentase pada setiap bar
-    fig.update_traces(texttemplate='%{y:.2f}%', textposition='inside', insidetextanchor='middle')
+    fig.update_traces(texttemplate='{y:.2f}', textposition='inside', insidetextanchor='middle')
     fig.update_layout(width=350, height=350)
     # Menampilkan grafik
     st.plotly_chart(fig)
