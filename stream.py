@@ -133,22 +133,6 @@ pic = st.selectbox("PIC RESPONSIBLE:", ['All','WH/DC','Resto'], index=0, on_chan
 bulan = bulan[:3]+'-24'
 df_internal['Rute Global'] = pd.Categorical(df_internal['Rute Global'],['WH/DC to WH/DC','WH/DC to Resto','Resto to WH/DC','Resto to Resto'])
 
-st.markdown(
-    """
-    <style>
-    .streamlit-expanderHeader {
-        font-size: 24px !important;
-    }
-    .stMetricValue {
-        font-size: 40px !important;
-        color: #FF6347;  /* Mengubah warna font */
-    }
-    .stMetricLabel {
-        font-size: 18px !important;
-    }
-    </style>
-    """, unsafe_allow_html=True
-)
 
 col = st.columns([1,2,1,2])
 with col[0]:
@@ -193,3 +177,20 @@ with col[3]:
              & (df_internal['Kategori Leadtime RI']=='Backdate')].groupby(['Leadtime RI Group','Rute Global'])[['Nomor IT Terima']].nunique().reset_index().pivot(index='Rute Global',columns='Leadtime RI Group',values='Nomor IT Terima').reset_index(),
                  hide_index=True
     )
+
+st.markdown(
+    """
+    <style>
+    .streamlit-expanderHeader {
+        font-size: 24px !important;
+    }
+    .stMetricValue {
+        font-size: 40px !important;
+        color: #FF6347;  /* Mengubah warna font */
+    }
+    .stMetricLabel {
+        font-size: 18px !important;
+    }
+    </style>
+    """, unsafe_allow_html=True
+)
