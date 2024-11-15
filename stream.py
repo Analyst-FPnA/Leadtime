@@ -90,7 +90,7 @@ list_bulan = [
         'July', 'August', 'September', 'October', 'November', 'December']
         
 bulan = st.selectbox("MONTH:", list_bulan, index=9, on_change=reset_button_state)
-pic = st.selectbox("PIC RESPONSIBLE:", ['All','WH/DC','Resto'], index=9, on_change=reset_button_state)
+pic = st.selectbox("PIC RESPONSIBLE:", ['All','WH/DC','Resto'], index=0, on_change=reset_button_state)
 
 df_internal['Rute Global'] = pd.Categorical(df_internal['Rute Global'],['WH/DC to WH/DC','WH/DC to Resto','Resto to WH/DC','Resto to Resto'])
 
