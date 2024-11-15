@@ -131,6 +131,7 @@ list_bulan = [
         'July', 'August', 'September', 'October', 'November', 'December']
         
 bulan = st.selectbox("MONTH:", list_bulan, index=9, on_change=reset_button_state)
+df_tanggal = pd.DataFrame(pd.date_range(start=f'{2024}-{int(pd.to_datetime('{bulan}-2024',format='%B-%Y').strftime('%m')):02d}-01', end=f'{2024}-{int(pd.to_datetime('{bulan}-2024',format='%B-%Y').strftime('%m')):02d}-28', freq='D'), columns=['Tanggal'])
 
 st.markdown('### Leadtime-Internal')
 pic = st.selectbox("PIC RESPONSIBLE:", ['All','WH/DC','Resto'], index=0, on_change=reset_button_state)
@@ -213,7 +214,8 @@ with col[1]:
     df_line = df_eksternal[(df_eksternal['Bulan PO']==bulan) & (df_eksternal['PIC Responsible']=='Logistic') 
              & (df_eksternal['Kategori PO(Datang)-PR(Create)']=='Backdate') & (df_eksternal['Kategori Item']=='Eksternal Logistic')
              ].groupby(['Tanggal PO'])[['Nomor PO']].nunique().reset_index()
-    create_line_chart(df_line, x_column='Tanggal PO', y_column='Nomor PO', title="DAILY BACKDATE")
+    df_line = df_tanggal.merge(df_line,how='left',left_on='Tanggal',right_on='Tanggal PO').fillna(0)
+    create_line_chart(df_line, x_column='Tanggal', y_column='Nomor PO', title="DAILY BACKDATE")
 with col[2]:
     df_bar = df_eksternal[(df_eksternal['Bulan PO']==bulan) & (df_eksternal['PIC Responsible']=='Logistic') 
              & (df_eksternal['Kategori PO(Datang)-PR(Create)']=='Backdate') & (df_eksternal['Kategori Item']=='Eksternal Logistic')].groupby(['Rute'])[['Nomor PO']].nunique().reset_index()
