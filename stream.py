@@ -119,7 +119,7 @@ def create_percentage_barchart(df, x_col, y_col):
                  color_discrete_sequence=px.colors.sequential.RdBu)
     
     # Menambahkan nilai persentase pada setiap bar
-    fig.update_traces(texttemplate='%{y:.2f}', textposition='inside', insidetextanchor='middle')
+    fig.update_traces(texttemplate='%{y:,.0f}', textposition='inside', insidetextanchor='middle')
     fig.update_layout(width=350, height=350)
     # Menampilkan grafik
     st.plotly_chart(fig)
