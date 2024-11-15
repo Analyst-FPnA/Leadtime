@@ -152,6 +152,22 @@ with col[3]:
     col2 = st.columns(2)
     with col2[0]:
         st.metric(label="Total", value="{:,.0f}".format(df_internal[(df_internal['Bulan Terima']==bulan) & (df_internal['Terima #2'].isin(['Resto','WH/DC'] if pic=='All' else [pic]))]['Nomor IT Terima'].nunique()), delta=None)
+        st.markdown(
+    """
+    <style>
+    .streamlit-expanderHeader {
+        font-size: 24px !important;
+    }
+    .stMetricValue {
+        font-size: 40px !important;
+        color: #FF6347;  /* Mengubah warna font */
+    }
+    .stMetricLabel {
+        font-size: 18px !important;
+    }
+    </style>
+    """, unsafe_allow_html=True
+)       
     st.dataframe(df_internal[(df_internal['Bulan Kirim']==bulan) & (df_internal['Kirim #2'].isin(['Resto','WH/DC'] if pic=='All' else [pic]))
              & (df_internal['Kategori Leadtime SJ']=='Backdate')].groupby(['Leadtime SJ Group','Rute Global'])[['Nomor IT Kirim']].nunique().reset_index().pivot(index='Rute Global',columns='Leadtime SJ Group',values='Nomor IT Kirim').reset_index(),
                  hide_index=True
@@ -178,19 +194,4 @@ with col[3]:
                  hide_index=True
     )
 
-st.markdown(
-    """
-    <style>
-    .streamlit-expanderHeader {
-        font-size: 24px !important;
-    }
-    .stMetricValue {
-        font-size: 40px !important;
-        color: #FF6347;  /* Mengubah warna font */
-    }
-    .stMetricLabel {
-        font-size: 18px !important;
-    }
-    </style>
-    """, unsafe_allow_html=True
-)
+
