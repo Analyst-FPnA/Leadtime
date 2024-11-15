@@ -201,7 +201,7 @@ st.markdown('### Leadtime-Eksternal')
 df_eksternal['Tanggal PO'] = pd.to_datetime(df_eksternal['Tanggal PO'])
 
 st.markdown('#### PO(Datang)-PR(Create)')
-st.write('Logistic')
+st.write('PIC Responsible: Logistic')
 col = st.columns([1,2,1])
 
 with col[0]:
