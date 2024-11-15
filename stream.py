@@ -131,7 +131,7 @@ list_bulan = [
         'July', 'August', 'September', 'October', 'November', 'December']
         
 bulan = st.selectbox("MONTH:", list_bulan, index=9, on_change=reset_button_state)
-df_tanggal = pd.DataFrame(pd.date_range(start=f'{2024}-{int(pd.to_datetime('{bulan}-2024',format='%B-%Y').strftime('%m')):02d}-01', end=f'{2024}-{int(pd.to_datetime('{bulan}-2024',format='%B-%Y').strftime('%m')):02d}-28', freq='D'), columns=['Tanggal'])
+df_tanggal = pd.DataFrame(pd.date_range(start=f'{2024}-{int(pd.to_datetime(f'{bulan}-2024',format='%B-%Y').strftime('%m')):02d}-01', end=f'{2024}-{int(pd.to_datetime(f'{bulan}-2024',format='%B-%Y').strftime('%m')):02d}-28', freq='D'), columns=['Tanggal'])
 
 st.markdown('### Leadtime-Internal')
 pic = st.selectbox("PIC RESPONSIBLE:", ['All','WH/DC','Resto'], index=0, on_change=reset_button_state)
