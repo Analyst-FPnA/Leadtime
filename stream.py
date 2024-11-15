@@ -147,7 +147,7 @@ with col[1]:
 with col[2]:
     df_bar = df_internal[(df_internal['Bulan Kirim']==bulan) & (df_internal['Kirim #2'].isin(['Resto','WH/DC'] if pic=='All' else [pic]))
              & (df_internal['Kategori Leadtime SJ']=='Backdate')].groupby(['Terima #2'])[['Nomor IT Kirim']].nunique().reset_index()
-    create_percentage_barchart(df_bar, 'Kirim #2', 'Nomor IT Kirim')
+    create_percentage_barchart(df_bar, 'Terima #2', 'Nomor IT Kirim')
 with col[3]:
     st.dataframe(df_internal[(df_internal['Bulan Kirim']==bulan) & (df_internal['Kirim #2'].isin(['Resto','WH/DC'] if pic=='All' else [pic]))
              & (df_internal['Kategori Leadtime SJ']=='Backdate')].groupby(['Leadtime SJ Group','Rute Global'])[['Nomor IT Kirim']].nunique().reset_index().pivot(index='Rute Global',columns='Leadtime SJ Group',values='Nomor IT Kirim').reset_index(),
