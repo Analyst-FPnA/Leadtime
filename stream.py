@@ -102,14 +102,14 @@ def create_line_chart(df, x_column, y_column, title="Line Chart"):
     
     fig.update_layout(
         title=dict(
-            text=title,
+            text='',
             font=dict(size=20),
             x=0.5  # Pusatkan judul
         ),
         xaxis_title=x_column,
         yaxis_title=y_column
     )
-    
+    fig.update_layout(width=350, height=500)
     # Menampilkan grafik di Streamlit
     st.plotly_chart(fig)
 
