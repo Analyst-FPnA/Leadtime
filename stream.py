@@ -133,6 +133,22 @@ pic = st.selectbox("PIC RESPONSIBLE:", ['All','WH/DC','Resto'], index=0, on_chan
 bulan = bulan[:3]+'-24'
 df_internal['Rute Global'] = pd.Categorical(df_internal['Rute Global'],['WH/DC to WH/DC','WH/DC to Resto','Resto to WH/DC','Resto to Resto'])
 
+st.markdown(
+    """
+    <style>
+    .streamlit-expanderHeader {
+        font-size: 24px !important;
+    }
+    .stMetricValue {
+        font-size: 40px !important;
+        color: #FF6347;  /* Mengubah warna font */
+    }
+    .stMetricLabel {
+        font-size: 18px !important;
+    }
+    </style>
+    """, unsafe_allow_html=True
+)
 
 col = st.columns([1,2,1,2])
 with col[0]:
@@ -149,6 +165,9 @@ with col[2]:
              & (df_internal['Kategori Leadtime SJ']=='Backdate')].groupby(['Terima #2'])[['Nomor IT Kirim']].nunique().reset_index()
     create_percentage_barchart(df_bar, 'Terima #2', 'Nomor IT Kirim')
 with col[3]:
+    col2 = st.columns(2)
+    with col2[0]:
+        st.metric(label="Total", value="{:,.0f}".format(df_internal[(df_internal['Bulan Terima']==bulan) & (df_internal['Terima #2'].isin(['Resto','WH/DC'] if pic=='All' else [pic]))]['Nomor IT Terima'].nunique()), delta=None)
     st.dataframe(df_internal[(df_internal['Bulan Kirim']==bulan) & (df_internal['Kirim #2'].isin(['Resto','WH/DC'] if pic=='All' else [pic]))
              & (df_internal['Kategori Leadtime SJ']=='Backdate')].groupby(['Leadtime SJ Group','Rute Global'])[['Nomor IT Kirim']].nunique().reset_index().pivot(index='Rute Global',columns='Leadtime SJ Group',values='Nomor IT Kirim').reset_index(),
                  hide_index=True
@@ -170,10 +189,6 @@ with col[2]:
              & (df_internal['Kategori Leadtime RI']=='Backdate')].groupby(['Kirim #2'])[['Nomor IT Terima']].nunique().reset_index()
     create_percentage_barchart(df_bar, 'Kirim #2', 'Nomor IT Terima')
 with col[3]:
-    col2 = st.columns(2)
-    with col2[0]:
-        st.metric(label="Total", value=f"{df_internal[(df_internal['Bulan Terima']==bulan) & (df_internal['Terima #2'].isin(['Resto','WH/DC'] if pic=='All' else [pic]))]['Nomor IT Terima'].nunique()}", delta=None)
-    
     st.dataframe(df_internal[(df_internal['Bulan Terima']==bulan) & (df_internal['Terima #2'].isin(['Resto','WH/DC'] if pic=='All' else [pic]))
              & (df_internal['Kategori Leadtime RI']=='Backdate')].groupby(['Leadtime RI Group','Rute Global'])[['Nomor IT Terima']].nunique().reset_index().pivot(index='Rute Global',columns='Leadtime RI Group',values='Nomor IT Terima').reset_index(),
                  hide_index=True
