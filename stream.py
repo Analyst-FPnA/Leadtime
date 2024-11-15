@@ -63,7 +63,7 @@ def create_pie_chart(df, labels_column, values_column, title="Pie Chart"):
     # Kustomisasi tampilan
     fig.update_traces(
         textinfo='percent+label',  # Menampilkan label dan persentase
-        textfont_size=16,  # Ukuran teks yang lebih besar
+        textfont_size=12,  # Ukuran teks yang lebih besar
         pull=[0.1 if value == df[values_column].max() else 0 for value in df[values_column]]  # Memperbesar bagian terbesar
     )
 
