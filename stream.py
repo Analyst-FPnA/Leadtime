@@ -353,7 +353,7 @@ with col[2]:
     create_percentage_barchart(df_bar, 'Rute', 'Nomor PO')
 
 
-st.write('PIC Responsible: WG/CK')
+st.write('PIC Responsible: WH/CK')
 st.write('Kategori Item: Internal Logistic')
 col = st.columns([1,2,1])
 
