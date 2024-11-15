@@ -43,7 +43,7 @@ download_file_from_google_drive(file_id, dest_path)
         
 if 'df_internal' not in locals():
   with zipfile.ZipFile(f'downloaded_file.zip', 'r') as z:
-    with z.open('Leeadtime_internal.csv') as f:
+    with z.open('Leadtime_internal.csv') as f:
         df_internal = pd.read_csv(f)
 
 
