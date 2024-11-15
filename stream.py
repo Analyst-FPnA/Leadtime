@@ -98,10 +98,10 @@ def create_line_chart(df, x_column, y_column, title="Line Chart"):
     """
     # Membuat line chart menggunakan Plotly
     fig = px.line(df, x=x_column, y=y_column, title=title)
-    
+    pie_colors = px.colors.qualitative.Plotly
     # Kustomisasi tampilan
     fig.update_traces(
-        line=dict(color='blue', width=2.5),  # Warna garis biru dengan ketebalan 2.5
+        line=dict(color=pie_colors[0], width=2.5),  # Warna garis biru dengan ketebalan 2.5
         mode='lines+markers'  # Menampilkan garis dan titik data
     )
     
