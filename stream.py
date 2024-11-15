@@ -46,6 +46,8 @@ if 'df_internal' not in locals():
   with zipfile.ZipFile(f'downloaded_file.zip', 'r') as z:
     with z.open('Leadtime_internal.csv') as f:
         df_internal = pd.read_csv(f)
+    with z.open('Leadtime_eksternal.csv') as f:
+        df_eksternal = pd.read_csv(f)
 
 
 def create_pie_chart(df, labels_column, values_column, title="Pie Chart"):
@@ -195,4 +197,10 @@ with col[3]:
                  hide_index=True
     )
 
+df_eksternal['Tanggal PO'] = pd.to_datetime(df_eksternal['Tanggal PO'])
+col = st.columns([1,2,1])
+with col[0]:
+    df_pie = df_eksternal[(df_eksternal['Bulan PO']==bulan) & (df_eksternal['PIC Responsible']=='Logistic') 
+             & (df_eksternal['Kategori Item']=='Eksternal Logistic')].groupby(['Kategori PO(Datang)-PR(Create)'])[['Nomor PO']].nunique().reset_index()
+    create_pie_chart(df_pie, labels_column=''Kategori PO(Datang)-PR(Create)', values_column='Nomor PO', title="OUTGOING BACKDATE")
 
