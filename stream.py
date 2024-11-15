@@ -170,6 +170,9 @@ with col[2]:
              & (df_internal['Kategori Leadtime RI']=='Backdate')].groupby(['Kirim #2'])[['Nomor IT Terima']].nunique().reset_index()
     create_percentage_barchart(df_bar, 'Kirim #2', 'Nomor IT Terima')
 with col[3]:
+    col2 : st.columns(2)
+    with col2[0]:
+        st.metric(label="Total", value=f"{df_internal[(df_internal['Bulan Terima']==bulan) & (df_internal['Terima #2'].isin(['Resto','WH/DC'] if pic=='All' else [pic]))]['Nomor IT Terima'].nunique().values}", delta=None)
     st.dataframe(df_internal[(df_internal['Bulan Terima']==bulan) & (df_internal['Terima #2'].isin(['Resto','WH/DC'] if pic=='All' else [pic]))
              & (df_internal['Kategori Leadtime RI']=='Backdate')].groupby(['Leadtime RI Group','Rute Global'])[['Nomor IT Terima']].nunique().reset_index().pivot(index='Rute Global',columns='Leadtime RI Group',values='Nomor IT Terima').reset_index(),
                  hide_index=True
