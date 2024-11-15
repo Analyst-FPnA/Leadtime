@@ -258,7 +258,7 @@ with col[2]:
              & (df_eksternal['Kategori PO(Datang)-PR(Create)']=='Backdate')].groupby(['Rute'])[['Nomor PO']].nunique().reset_index()
     create_percentage_barchart(df_bar, 'Rute', 'Nomor PO')
 
-st.markdown('#### 'Kategori PO(Datang)-PO(Create)'')
+st.markdown('#### Kategori PO(Datang)-PO(Create)')
 st.write('PIC Responsible: Logistic')
 st.write('Kategori Item: Eksternal Logistic')
 col = st.columns([1,2,1])
