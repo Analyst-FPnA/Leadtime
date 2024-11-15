@@ -199,10 +199,11 @@ with col[3]:
 
 st.markdown('### Leadtime-Eksternal')
 df_eksternal['Tanggal PO'] = pd.to_datetime(df_eksternal['Tanggal PO'])
-col = st.columns([1,2,1])
 
 st.markdown('#### PO(Datang)-PR(Create)')
 st.write('Logistic')
+col = st.columns([1,2,1])
+
 with col[0]:
     df_pie = df_eksternal[(df_eksternal['Bulan PO']==bulan) & (df_eksternal['PIC Responsible']=='Logistic') 
              & (df_eksternal['Kategori Item']=='Eksternal Logistic')].groupby(['Kategori PO(Datang)-PR(Create)'])[['Nomor PO']].nunique().reset_index()
