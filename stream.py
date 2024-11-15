@@ -149,6 +149,7 @@ with col[2]:
              & (df_internal['Kategori Leadtime SJ']=='Backdate')].groupby(['Terima #2'])[['Nomor IT Kirim']].nunique().reset_index()
     create_percentage_barchart(df_bar, 'Terima #2', 'Nomor IT Kirim')
 with col[3]:
+    st.write('')
     col2 = st.columns(3)
     with col2[0]:
         st.metric(label="Total", value="{:,.0f}".format(df_internal[(df_internal['Bulan Terima']==bulan) & (df_internal['Terima #2'].isin(['Resto','WH/DC'] if pic=='All' else [pic]))]['Nomor IT Terima'].nunique()), delta=None)
