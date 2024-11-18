@@ -112,7 +112,7 @@ def create_line_chart(df, x_column, y_column, title="Line Chart"):
 
 def create_percentage_barchart(df, x_col, y_col):
     # Menghitung persentase berdasarkan y_col
-    df['Percentage'] = df[y_col]/df[y_col].sum()
+    df['Percentage'] = (df[y_col]/df[y_col].sum())* 100
     # Membuat bar chart menggunakan Plotly
     fig = px.bar(df, 
                  x=x_col, 
