@@ -27,8 +27,10 @@ with col[3]:
     
     df_tabel = df_internal[(df_internal['Bulan Kirim']==bulan) & (df_internal['Kirim #2'].isin(['Resto','WH/DC'] if pic=='All' else [pic]))
              & (df_internal['Kategori Leadtime SJ']=='Backdate')].groupby(['Leadtime SJ Group','Rute Global'])[['Nomor IT Kirim']].nunique().reset_index().pivot(index='Rute Global',columns='Leadtime SJ Group',values='Nomor IT Kirim').reset_index()
-    st.dataframe(df.loc[~(df.iloc[:,1:] == 0).any(axis=1)],hide_index=True)
-
+    if pic =='Resto':
+        st.dataframe(df_tabel.loc[df_tabel['Rute Global'].isin(['Resto to WH/DC','Resto to Resto'])],hide_index=True)
+    else:
+        st.dataframe(~df_tabel.loc[df_tabel['Rute Global'].isin(['Resto to WH/DC','Resto to Resto'])],hide_index=True)
 
 col = st.columns([1,2,1,2])
 with col[0]:
@@ -53,9 +55,10 @@ with col[3]:
         st.metric(label="On-Time", value="{:,.0f}".format(df_pie[df_pie['Kategori Leadtime RI']=='On-Time']['Nomor IT Terima'].values[0]), delta=None)
     with col2[2]:
         st.metric(label="Backdate", value="{:,.0f}".format(df_pie[df_pie['Kategori Leadtime RI']=='Backdate']['Nomor IT Terima'].values[0]), delta=None)
-        
-    st.dataframe(df_internal[(df_internal['Bulan Terima']==bulan) & (df_internal['Terima #2'].isin(['Resto','WH/DC'] if pic=='All' else [pic]))
-             & (df_internal['Kategori Leadtime RI']=='Backdate')].groupby(['Leadtime RI Group','Rute Global'])[['Nomor IT Terima']].nunique().reset_index().pivot(index='Rute Global',columns='Leadtime RI Group',values='Nomor IT Terima').reset_index(),
-                 hide_index=True
-    )
 
+    df_tabel = df_internal[(df_internal['Bulan Terima']==bulan) & (df_internal['Terima #2'].isin(['Resto','WH/DC'] if pic=='All' else [pic]))
+             & (df_internal['Kategori Leadtime RI']=='Backdate')].groupby(['Leadtime RI Group','Rute Global'])[['Nomor IT Terima']].nunique().reset_index().pivot(index='Rute Global',columns='Leadtime RI Group',values='Nomor IT Terima').reset_index()
+    if pic=='Resto':
+        st.dataframe(df_tabel.loc[df_tabel['Rute Global'].isin(['WH/DC to Resto','WH/DC to Resto'])],hide_index=True)
+    else:
+        st.dataframe(df_tabel.loc[~df_tabel['Rute Global'].isin(['WH/DC to Resto','WH/DC to Resto'])],hide_index=True)
