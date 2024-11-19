@@ -16,8 +16,8 @@ import streamlit as st
 st.set_page_config(layout="wide")
 st.markdown(
     """
-    <div style="background-color: #FF4B4B; padding: 10px; border-radius: 5px; text-align: center;">
-        <h1 style="color: white; margin: 0;">Judul Utama</h1>
+    <div style="background-color: px.colors.sequential.RdBu[0]; padding: 10px; border-radius: 5px; text-align: center;">
+        <h2 style="color: white; margin: 0;">Dashboard-Leadtime</h1>
     </div>
     """,
     unsafe_allow_html=True
@@ -31,7 +31,6 @@ def download_file_from_github(url, save_path):
     else:
         print(f"Failed to download file. Status code: {response.status_code}")
 
-st.markdown('# Dashboard - Leadtime')
 
 if 'button_clicked' not in st.session_state:
     st.session_state.button_clicked = False
