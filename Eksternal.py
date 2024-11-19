@@ -1,4 +1,5 @@
-kat_eksternal = st.selectbox()
+kat_eksternal = st.selectbox("KATEGORI BACKDATE:", ['PO(Datang)-PR(Create)','PO(Datang)-PO(Create)','PO(Datang)-RI(Create)'], index=0, on_change=reset_button_state)
+
 if kat_eksternal =='PO(Datang)-PR(Create)':
     st.markdown('#### PO(Datang)-PR(Create)')
     st.write('PIC Responsible: Logistic')
