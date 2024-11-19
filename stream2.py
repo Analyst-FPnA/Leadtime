@@ -14,27 +14,7 @@ import plotly.graph_objs as go
 import streamlit as st
 
 st.set_page_config(layout="wide")
-st.markdown(
-    """
-    <style>
-    .nav-link {
-        background-color: #FF4B4B !important; /* Warna background tombol */
-        color: white !important; /* Warna teks */
-        border-radius: 5px; /* Membuat sudut tombol melengkung */
-        padding: 10px; /* Memberikan jarak dalam tombol */
-        margin: 5px; /* Jarak antar tombol */
-    }
-    .nav-link:hover {
-        background-color: #68041c !important; /* Warna saat tombol di-hover */
-    }
-    .nav-link.active {
-        background-color: #68041c !important; /* Warna tombol aktif */
-        color: white !important;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
+
 st.markdown(
     """
     <div style="background-color: #68041c; padding: 10px; border-radius: 5px; text-align: center;">
@@ -43,6 +23,7 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+st.write('')
 def download_file_from_github(url, save_path):
     response = requests.get(url)
     if response.status_code == 200:
