@@ -16,6 +16,27 @@ import streamlit as st
 st.set_page_config(layout="wide")
 st.markdown(
     """
+    <style>
+    .nav-link {
+        background-color: #FF4B4B !important; /* Warna background tombol */
+        color: white !important; /* Warna teks */
+        border-radius: 5px; /* Membuat sudut tombol melengkung */
+        padding: 10px; /* Memberikan jarak dalam tombol */
+        margin: 5px; /* Jarak antar tombol */
+    }
+    .nav-link:hover {
+        background-color: #68041c !important; /* Warna saat tombol di-hover */
+    }
+    .nav-link.active {
+        background-color: #FF0000 !important; /* Warna tombol aktif */
+        color: white !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+st.markdown(
+    """
     <div style="background-color: #68041c; padding: 10px; border-radius: 5px; text-align: center;">
         <h2 style="color: white; margin: 0;">Dashboard-Leadtime</h2>
     </div>
@@ -162,9 +183,8 @@ from streamlit_option_menu import option_menu
 
 # Membuat navigasi bar
 option = option_menu(
-    menu_title="Leadtime",  # required
-    options=["Leadtime-Internal", "Leadtime-Eksternal"],  # required
-    menu_icon="cast",  # optional
+    menu_title=None,  # required
+    options=["Leadtime-Internal", "Leadtime-Eksternal"],  # required  # optional
     default_index=0,  # optional
     orientation="horizontal",
 )
