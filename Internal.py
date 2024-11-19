@@ -61,4 +61,4 @@ with col[3]:
     if pic=='Resto':
         st.dataframe(df_tabel.loc[df_tabel['Rute Global'].isin(['WH/DC to Resto','Resto to Resto'])],hide_index=True)
     else:
-        st.dataframe(df_tabel.loc[~df_tabel['Rute Global'].isin(['Resto to WH/DC','WH/DC to WH/DC'])],hide_index=True)
+        st.dataframe(df_tabel.loc[df_tabel['Rute Global'].isin(['Resto to WH/DC','WH/DC to WH/DC'])],hide_index=True)
