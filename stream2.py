@@ -112,18 +112,32 @@ def create_line_chart(df, x_column, y_column, title="Line Chart"):
 
 def create_percentage_barchart(df, x_col, y_col):
     # Menghitung persentase berdasarkan y_col
-    df['Percentage'] = (df[y_col]/df[y_col].sum())* 100
+    df['Percentage'] = (df[y_col] / df[y_col].sum()) * 100
+
     # Membuat bar chart menggunakan Plotly
-    fig = px.bar(df, 
-                 x=x_col, 
-                 y='Percentage', 
-                 labels={x_col: 'Department', 'Percentage': '%'},
-                 color_discrete_sequence=px.colors.sequential.RdBu)
+    fig = px.bar(
+        df,
+        x=x_col,
+        y='Percentage',
+        labels={x_col: 'Department', 'Percentage': '%'},
+        color_discrete_sequence=px.colors.sequential.RdBu,
+        hover_data={y_col: True, 'Percentage': ':.2f%'}  # Menampilkan angka kuantitas dan persentase pada hover
+    )
     
     # Menambahkan nilai persentase pada setiap bar
-    fig.update_traces(texttemplate='%{y:.2f}%', textposition='inside', insidetextanchor='middle')
-    fig.update_layout(width=350, height=350)
-    # Menampilkan grafik
+    fig.update_traces(
+        texttemplate='%{y:.2f}%', 
+        textposition='inside', 
+        insidetextanchor='middle'
+    )
+    
+    # Mengatur layout grafik
+    fig.update_layout(
+        width=350, 
+        height=350
+    )
+    
+    # Menampilkan grafik di Streamlit
     st.plotly_chart(fig)
 
 list_bulan = [
