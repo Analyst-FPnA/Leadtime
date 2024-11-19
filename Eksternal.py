@@ -146,7 +146,7 @@ if kat_eksternal =='PO(Datang)-PO(Create)':
         with col2[1]:
             st.metric(label="On-Time", value="{:,.0f}".format(df_pie[df_pie['Kategori PO(Datang)-PO(Create)']=='On-Time']['Nomor PO'].values[0]), delta=None)
         with col2[2]:
-            st.metric(label="Backdate", value="{:,.0f}".format(df_pie[df_pie[Kategori PO(Datang)-PO(Create)']=='Backdate']['Nomor PO'].values[0]), delta=None)
+            st.metric(label="Backdate", value="{:,.0f}".format(df_pie[df_pie['Kategori PO(Datang)-PO(Create)']=='Backdate']['Nomor PO'].values[0]), delta=None)
         
         st.dataframe(df_eksternal[(df_eksternal['Bulan PO']==bulan) & (df_eksternal['PIC Responsible']=='Logistic') 
                  & (df_eksternal['Kategori PO(Datang)-PO(Create)']=='Backdate')].groupby(['Rute','PO(Datang)-PO(Create) Group'])[['Nomor PO']].nunique().reset_index().pivot(index='Rute',columns='PO(Datang)-PR(Create) Group',values='Nomor PO').reset_index().merge(
@@ -181,7 +181,7 @@ if kat_eksternal =='PO(Datang)-PO(Create)':
         with col2[1]:
             st.metric(label="On-Time", value="{:,.0f}".format(df_pie[df_pie['Kategori PO(Datang)-PO(Create)']=='On-Time']['Nomor PO'].values[0]), delta=None)
         with col2[2]:
-            st.metric(label="Backdate", value="{:,.0f}".format(df_pie[df_pie[Kategori PO(Datang)-PO(Create)']=='Backdate']['Nomor PO'].values[0]), delta=None)
+            st.metric(label="Backdate", value="{:,.0f}".format(df_pie[df_pie['Kategori PO(Datang)-PO(Create)']=='Backdate']['Nomor PO'].values[0]), delta=None)
         
         st.dataframe(df_eksternal[(df_eksternal['Bulan PO']==bulan) & (df_eksternal['PIC Responsible']=='Resto') 
                  & (df_eksternal['Kategori PO(Datang)-PO(Create)']=='Backdate')].groupby(['Rute','PO(Datang)-PO(Create) Group'])[['Nomor PO']].nunique().reset_index().pivot(index='Rute',columns='PO(Datang)-PR(Create) Group',values='Nomor PO').reset_index().merge(
