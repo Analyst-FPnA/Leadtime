@@ -29,9 +29,11 @@ with col[3]:
              & (df_internal['Kategori Leadtime SJ']=='Backdate')].groupby(['Leadtime SJ Group','Rute Global'])[['Nomor IT Kirim']].nunique().reset_index().pivot(index='Rute Global',columns='Leadtime SJ Group',values='Nomor IT Kirim').reset_index()
     if pic =='Resto':
         st.dataframe(df_tabel.loc[df_tabel['Rute Global'].isin(['Resto to WH/DC','Resto to Resto'])],hide_index=True)
-    else:
+    elif pic=='WH/DC':
         st.dataframe(df_tabel.loc[df_tabel['Rute Global'].isin(['WH/DC to WH/DC','WH/DC to Resto'])],hide_index=True)
-
+    else:
+        st.dataframe(df_tabel,hide_index=True)
+        
 col = st.columns([1,2,1,2])
 with col[0]:
     df_pie = df_internal[(df_internal['Bulan Terima']==bulan) & (df_internal['Terima #2'].isin(['Resto','WH/DC'] if pic=='All' else [pic]))].groupby(['Kategori Leadtime RI'])[['Nomor IT Terima']].nunique().reset_index()
@@ -60,5 +62,7 @@ with col[3]:
              & (df_internal['Kategori Leadtime RI']=='Backdate')].groupby(['Leadtime RI Group','Rute Global'])[['Nomor IT Terima']].nunique().reset_index().pivot(index='Rute Global',columns='Leadtime RI Group',values='Nomor IT Terima').reset_index()
     if pic=='Resto':
         st.dataframe(df_tabel.loc[df_tabel['Rute Global'].isin(['WH/DC to Resto','Resto to Resto'])],hide_index=True)
-    else:
+    elif pic=='WH/DC':
         st.dataframe(df_tabel.loc[df_tabel['Rute Global'].isin(['Resto to WH/DC','WH/DC to WH/DC'])],hide_index=True)
+    else:
+        st.dataframe(df_tabel,hide_index=True)
