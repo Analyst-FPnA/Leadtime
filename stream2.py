@@ -138,3 +138,32 @@ df_eksternal['Tanggal PO'] = pd.to_datetime(df_eksternal['Tanggal PO'])
 
 import requests
 from streamlit_option_menu import option_menu
+
+
+# Membuat navigasi bar
+option = option_menu(
+    menu_title="Leadtime",  # required
+    options=["Leadtime-Internal", "Leadtime-Eksternal"],  # required
+    menu_icon="cast",  # optional
+    default_index=0,  # optional
+    orientation="horizontal",
+)
+
+# Fungsi untuk menjalankan file python yang diunduh
+def run_stream_script(url):
+    # Mengunduh file dari GitHub
+    response = requests.get(url)
+    if response.status_code == 200:
+        # Menjalankan file yang diunduh
+        exec(response.text, globals())
+    else:
+        st.error(f"Failed to download file: {response.status_code}")
+
+# Arahkan ke aplikasi berdasarkan pilihan pengguna
+if option == 'Leadtime-Internal':
+    stream1_url = 'https://raw.githubusercontent.com/Analyst-FPnA/Leadtime/main/Internal.py'
+    run_stream_script(stream1_url)
+  
+elif option == 'Leadtime-Eksternal':
+    stream2_url = 'https://raw.githubusercontent.com/Analyst-FPnA/Leadtime/main/Eksternal.py'
+    run_stream_script(stream2_url)
