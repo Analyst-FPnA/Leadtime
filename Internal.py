@@ -9,7 +9,7 @@ st.markdown(
 st.write('')
 pic = st.selectbox("PIC RESPONSIBLE:", ['All','WH/DC','Resto'], index=0, on_change=reset_button_state)
 
-st.markdown('## Incoming Backdate')
+st.markdown('### Incoming Backdate')
 col = st.columns([1,2,1,2])
 with col[0]:
     df_pie = df_internal[(df_internal['Bulan Kirim']==bulan) & (df_internal['Kirim #2'].isin(['Resto','WH/DC'] if pic=='All' else [pic]))].groupby(['Kategori Leadtime SJ'])[['Nomor IT Kirim']].nunique().reset_index()
@@ -44,7 +44,7 @@ with col[3]:
         st.dataframe(df_tabel,hide_index=True)
 
 
-st.markdown('## Outgoing Backdate')
+st.markdown('### Outgoing Backdate')
 col = st.columns([1,2,1,2])
 with col[0]:
     df_pie = df_internal[(df_internal['Bulan Terima']==bulan) & (df_internal['Terima #2'].isin(['Resto','WH/DC'] if pic=='All' else [pic]))].groupby(['Kategori Leadtime RI'])[['Nomor IT Terima']].nunique().reset_index()
