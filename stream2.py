@@ -119,7 +119,7 @@ def create_percentage_barchart(df, x_col, y_col):
         df,
         x=x_col,
         y='Percentage',
-        labels={x_col: 'Department', 'Percentage': '%'},
+        labels={x_col: 'Kategori', 'Percentage': '%'},
         color_discrete_sequence=px.colors.sequential.RdBu,
         hover_data={y_col: True, 'Percentage': ':.2f%'}  # Menampilkan angka kuantitas dan persentase pada hover
     )
