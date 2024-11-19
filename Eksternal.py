@@ -35,7 +35,7 @@ if kat_eksternal =='PO(Datang)-PR(Create)':
         col2 = st.columns(3)
         with col2[0]:
             st.metric(label="Total", value="{:,.0f}".format(df_eksternal[(df_eksternal['Bulan PO']==bulan) & (df_eksternal['PIC Responsible']=='Logistic') 
-                 & (df_eksternal['Kategori Item']=='Eksternal Logistic')])]['Nomor PO'].nunique()), delta=None)
+                 & (df_eksternal['Kategori Item']=='Eksternal Logistic')]['Nomor PO'].nunique()), delta=None)
         with col2[1]:
             st.metric(label="On-Time", value="{:,.0f}".format(df_pie[df_pie['Kategori PO(Datang)-PR(Create)']=='On-Time']['Nomor PO'].values[0]), delta=None)
         with col2[2]:
