@@ -206,11 +206,11 @@ from streamlit_option_menu import option_menu
 
 # Membuat navigasi bar
 option = option_menu(
-    menu_title="#FPnA",  # required
-    options=["GIS-Cleaning", "Rekap-SCM"],  # required
+    menu_title="Leadtime ",  # required
+    options=["PO_PR", "PO_PO", "PO_RI"],  # required
     menu_icon="cast",  # optional
     default_index=0,  # optional
-    orientation="horizontal",
+    orientation="vertical",
 )
 
 # Fungsi untuk menjalankan file python yang diunduh
@@ -224,10 +224,14 @@ def run_stream_script(url):
         st.error(f"Failed to download file: {response.status_code}")
 
 # Arahkan ke aplikasi berdasarkan pilihan pengguna
-if option == 'GIS-Cleaning':
-    stream1_url = 'https://raw.githubusercontent.com/Analyst-FPnA/GIS-Cleaning/main/stream.py'
+if option == 'PO_PR':
+    stream1_url = 'https://raw.githubusercontent.com/Analyst-FPnA/Leadtime/main/Eksternal_PO_PR.py'
     run_stream_script(stream1_url)
   
-elif option == 'Rekap-SCM':
-    stream2_url = 'https://raw.githubusercontent.com/Analyst-FPnA/Rekap-SCM/main/stream.py'
+elif option == 'PO_PO':
+    stream2_url = 'https://raw.githubusercontent.com/Analyst-FPnA/Leadtime/main/Eksternal_PO_PO.py'
     run_stream_script(stream2_url)
+
+elif option == 'PO_RI':
+    stream3_url = 'https://raw.githubusercontent.com/Analyst-FPnA/Leadtime/main/Eksternal_PO_RI.py'
+    run_stream_script(stream3_url)
