@@ -28,7 +28,7 @@ st.markdown(
         background-color: #68041c !important; /* Warna saat tombol di-hover */
     }
     .nav-link.active {
-        background-color: #FF0000 !important; /* Warna tombol aktif */
+        background-color: #68041c !important; /* Warna tombol aktif */
         color: white !important;
     }
     </style>
