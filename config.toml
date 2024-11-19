@@ -1,0 +1,6 @@
+[theme]
+primaryColor = "#FF4B4B"    # Warna utama (contoh merah)
+backgroundColor = "#FFFFFF" # Warna latar belakang
+secondaryBackgroundColor = "#F0F0F0" # Warna latar belakang kedua
+textColor = "#000000"       # Warna teks
+font = "sans serif"         # Font (opsional)
