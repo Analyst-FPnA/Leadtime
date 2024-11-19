@@ -17,7 +17,7 @@ st.set_page_config(layout="wide")
 st.markdown(
     """
     <div style="background-color: px.colors.sequential.RdBu[0]; padding: 10px; border-radius: 5px; text-align: center;">
-        <h2 style="color: white; margin: 0;">Dashboard-Leadtime</h1>
+        <h2 style="color: white; margin: 0;">Dashboard-Leadtime</h2>
     </div>
     """,
     unsafe_allow_html=True
