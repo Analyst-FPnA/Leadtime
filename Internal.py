@@ -6,7 +6,8 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-st.write('')
+
+st.write(' ')
 pic = st.selectbox("PIC RESPONSIBLE:", ['All','WH/DC','Resto'], index=0, on_change=reset_button_state)
 
 st.markdown('### Incoming Backdate')
