@@ -31,6 +31,16 @@ if kat_eksternal =='PO(Datang)-PR(Create)':
                  & (df_eksternal['Kategori PO(Datang)-PR(Create)']=='Backdate') & (df_eksternal['Kategori Item']=='Eksternal Logistic')].groupby(['Rute'])[['Nomor PO']].nunique().reset_index()
         create_percentage_barchart(df_bar, 'Rute', 'Nomor PO')
     with col[3]:
+        st.write('')
+        col2 = st.columns(3)
+        with col2[0]:
+            st.metric(label="Total", value="{:,.0f}".format(df_eksternal[(df_eksternal['Bulan PO']==bulan) & (df_eksternal['PIC Responsible']=='Logistic') 
+                 & (df_eksternal['Kategori Item']=='Eksternal Logistic')])]['Nomor PO'].nunique()), delta=None)
+        with col2[1]:
+            st.metric(label="On-Time", value="{:,.0f}".format(df_pie[df_pie['Kategori PO(Datang)-PR(Create)']=='On-Time']['Nomor PO'].values[0]), delta=None)
+        with col2[2]:
+            st.metric(label="Backdate", value="{:,.0f}".format(df_pie[df_pie['Kategori PO(Datang)-PR(Create)']=='Backdate']['Nomor PO'].values[0]), delta=None)
+        
         st.dataframe(df_eksternal[(df_eksternal['Bulan PO']==bulan) & (df_eksternal['PIC Responsible']=='Logistic') 
                  & (df_eksternal['Kategori PO(Datang)-PR(Create)']=='Backdate') & (df_eksternal['Kategori Item']=='Eksternal Logistic')].groupby(['Rute','PO(Datang)-PR(Create) Group'])[['Nomor PO']].nunique().reset_index().pivot(index='Rute',columns='PO(Datang)-PR(Create) Group',values='Nomor PO').reset_index()
         , hide_index=True)
