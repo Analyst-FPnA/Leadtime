@@ -1,9 +1,17 @@
-st.markdown('### Leadtime-Eksternal')
+st.markdown(
+    """
+    <div style="background-color: #68041c; padding: 10px; border-radius: 5px; text-align: center;">
+        <h3 style="color: white; margin: 0;">Leadtime-Eksternal</h3>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+st.write('')
 
 kat_eksternal = st.selectbox("KATEGORI BACKDATE:", ['PO(Datang)-PR(Create)','PO(Datang)-PO(Create)','PO(Datang)-RI(Create)'], index=0, on_change=reset_button_state)
 
 if kat_eksternal =='PO(Datang)-PR(Create)':
-    st.markdown('#### PO(Datang)-PR(Create)')
+    st.markdown('### PO(Datang)-PR(Create)')
     st.write('PIC Responsible: Logistic')
     st.write('Kategori Item: Eksternal Logistic')
     col = st.columns([1,2,1])
@@ -61,7 +69,7 @@ if kat_eksternal =='PO(Datang)-PR(Create)':
         create_percentage_barchart(df_bar, 'Rute', 'Nomor PO')
 
 if kat_eksternal =='PO(Datang)-PO(Create)':
-    st.markdown('#### Kategori PO(Datang)-PO(Create)')
+    st.markdown('### Kategori PO(Datang)-PO(Create)')
     st.write('PIC Responsible: Procurement')
     st.write('Kategori Item: Logistic')
     col = st.columns([1,2,1])
@@ -100,7 +108,7 @@ if kat_eksternal =='PO(Datang)-PO(Create)':
         create_percentage_barchart(df_bar, 'Rute', 'Nomor PO')
 
 if kat_eksternal =='PO(Datang)-RI(Create)':
-    st.markdown('#### Kategori PO(Datang)-RI(Create)')
+    st.markdown('### Kategori PO(Datang)-RI(Create)')
     st.write('PIC Responsible: Resto')
     st.write('Kategori Item: Eksternal Logistic')
     col = st.columns([1,2,1])
