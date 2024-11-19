@@ -134,14 +134,7 @@ bulan = st.selectbox("MONTH:", list_bulan, index=9, on_change=reset_button_state
 df_tanggal = pd.DataFrame(pd.date_range(start=f'{2024}-{int(pd.to_datetime(f'{bulan}-2024',format='%B-%Y').strftime('%m')):02d}-01', end=f'{2024}-{int(pd.to_datetime(f'{bulan}-2024',format='%B-%Y').strftime('%m')):02d}-28', freq='D'), columns=['Tanggal'])
 bulan = bulan[:3]+'-24'
 df_internal['Rute Global'] = pd.Categorical(df_internal['Rute Global'],['WH/DC to WH/DC','WH/DC to Resto','Resto to WH/DC','Resto to Resto'])
-
-st.markdown('### Leadtime-Eksternal')
 df_eksternal['Tanggal PO'] = pd.to_datetime(df_eksternal['Tanggal PO'])
 
 import requests
 from streamlit_option_menu import option_menu
-
-
-elif option == 'PO_RI':
-    stream3_url = 'https://raw.githubusercontent.com/Analyst-FPnA/Leadtime/main/Eksternal_PO_RI.py'
-    run_stream_script(stream3_url)
