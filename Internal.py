@@ -1,3 +1,17 @@
+def style_table(df):
+    html = df.to_html(escape=False, index=False)
+    # Tambahkan style CSS untuk mengatur ukuran font
+    html = f"""
+    <style>
+        table {{
+            font-size: 10px;  /* Ganti ukuran sesuai kebutuhan */
+            width: 100%;
+        }}
+    </style>
+    {html}
+    """
+    return html
+    
 def highlight_first_word(df, col_name):
     def apply_highlight(value):
         # Pisahkan kata-kata dalam cell
@@ -72,14 +86,14 @@ with col[3]:
     if pic =='Resto':
         df_tabel = df_tabel.loc[df_tabel['Rute Global'].isin(['Resto to WH/DC','Resto to Resto'])]
         styled_df = highlight_first_word(df_tabel, "Rute Global")
-        st.markdown(styled_df.to_html(escape=False, index=False), unsafe_allow_html=True)
+        st.markdown(style_table(styled_df), unsafe_allow_html=True)
     elif pic=='WH/DC':
         df_tabel = df_tabel.loc[df_tabel['Rute Global'].isin(['WH/DC to WH/DC','WH/DC to Resto'])]
         styled_df = highlight_first_word(df_tabel, "Rute Global")
-        st.markdown(styled_df.to_html(escape=False, index=False), unsafe_allow_html=True)
+        st.markdown(style_table(styled_df), unsafe_allow_html=True)
     else:
         styled_df = highlight_first_word(df_tabel, "Rute Global")
-        st.markdown(styled_df.to_html(escape=False, index=False), unsafe_allow_html=True)
+        st.markdown(style_table(styled_df), unsafe_allow_html=True)
 
 
 st.markdown('### Incoming Backdate')
