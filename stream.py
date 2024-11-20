@@ -26,14 +26,11 @@ st.markdown(
 st.write('')
 
 data = {
-    "Tanggal": pd.date_range(start="2023-01-01", end="2023-12-31", freq="D"),
-    "Penjualan": range(1, 366)
+    "Tanggal": pd.date_range(start="2024-01-01", end="2024-12-31", freq="D"),
+    "Penjualan": range(1, 367)
 }
 df = pd.DataFrame(data)
 
-# Menampilkan DataFrame awal
-st.write("### Data Awal")
-st.dataframe(df)
 
 # Widget untuk memilih rentang tanggal
 st.write("### Filter Data Berdasarkan Rentang Tanggal")
