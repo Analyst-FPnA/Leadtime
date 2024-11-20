@@ -24,6 +24,26 @@ st.markdown(
     unsafe_allow_html=True
 )
 st.write('')
+
+data = {
+    "Tanggal": pd.date_range(start="2024-01-01", end="2024-12-31", freq="D"),
+    "Penjualan": range(1, 366)
+}
+df = pd.DataFrame(data)
+
+# Menampilkan DataFrame awal
+st.write("### Data Awal")
+st.dataframe(df)
+
+# Widget untuk memilih rentang tanggal
+st.write("### Filter Data Berdasarkan Rentang Tanggal")
+start_date, end_date = st.date_input(
+    "Pilih Rentang Tanggal",
+    [df["Tanggal"].min(), df["Tanggal"].max()],  # Default nilai awal
+    min_value=df["Tanggal"].min(),
+    max_value=df["Tanggal"].max()
+)
+
 def download_file_from_github(url, save_path):
     response = requests.get(url)
     if response.status_code == 200:
