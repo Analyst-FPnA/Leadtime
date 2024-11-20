@@ -23,7 +23,7 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-st.write(' ')
+st.write('')
 
 def download_file_from_github(url, save_path):
     response = requests.get(url)
