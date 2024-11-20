@@ -2,7 +2,7 @@ def style_table():
     html = f"""
     <style>
         table {{
-            font-size: 10px;  /* Ganti ukuran sesuai kebutuhan */
+            font-size: 12px;  /* Ganti ukuran sesuai kebutuhan */
             width: 100%;
         }}
     </style>
