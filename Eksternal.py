@@ -159,7 +159,7 @@ if kat_eksternal =='PO(Datang)-PO(Create)':
     
     with col[0]:
         df_pie = df_eksternal[(df_eksternal['PIC Responsible']=='Resto') &
-                 & (df_eksternal['Kategori Item']=='Eksternal Resto')].groupby(['Kategori PO(Datang)-PO(Create)'])[['Nomor PO']].nunique().reset_index()
+                 (df_eksternal['Kategori Item']=='Eksternal Resto')].groupby(['Kategori PO(Datang)-PO(Create)'])[['Nomor PO']].nunique().reset_index()
         create_pie_chart(df_pie, labels_column='Kategori PO(Datang)-PO(Create)', values_column='Nomor PO', title="OUTGOING BACKDATE")
     with col[1]:
         df_line = df_eksternal[ (df_eksternal['PIC Responsible']=='Resto') &
