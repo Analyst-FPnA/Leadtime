@@ -69,7 +69,7 @@ with col[3]:
     st.write('')
     col2 = st.columns(3)
     with col2[0]:
-        st.metric(label="Total", value="{:,.0f}".format((df_internal["Tanggal IT Terima"] >= pd.Timestamp(start_date)) & (df_internal["Tanggal IT Terima"] <= pd.Timestamp(end_date)) & (df_internal['Kirim #2'].isin(['Resto','WH/DC'] if pic=='All' else [pic]))]['Nomor IT Kirim'].nunique()), delta=None)
+        st.metric(label="Total", value="{:,.0f}".format(df_internal[(df_internal["Tanggal IT Terima"] >= pd.Timestamp(start_date)) & (df_internal["Tanggal IT Terima"] <= pd.Timestamp(end_date)) & (df_internal['Kirim #2'].isin(['Resto','WH/DC'] if pic=='All' else [pic]))]['Nomor IT Kirim'].nunique()), delta=None)
     with col2[1]:
         st.metric(label="On-Time", value="{:,.0f}".format(df_pie[df_pie['Kategori Leadtime SJ']=='On-Time']['Nomor IT Kirim'].values[0]), delta=None)
     with col2[2]:
@@ -113,7 +113,7 @@ with col[3]:
     st.write('')
     col2 = st.columns(3)
     with col2[0]:
-        st.metric(label="Total", value="{:,.0f}".format((df_internal["Tanggal IT Terima"] >= pd.Timestamp(start_date)) & (df_internal["Tanggal IT Terima"] <= pd.Timestamp(end_date)) & (df_internal['Terima #2'].isin(['Resto','WH/DC'] if pic=='All' else [pic]))]['Nomor IT Terima'].nunique()), delta=None)
+        st.metric(label="Total", value="{:,.0f}".format(df_internal[(df_internal["Tanggal IT Terima"] >= pd.Timestamp(start_date)) & (df_internal["Tanggal IT Terima"] <= pd.Timestamp(end_date)) & (df_internal['Terima #2'].isin(['Resto','WH/DC'] if pic=='All' else [pic]))]['Nomor IT Terima'].nunique()), delta=None)
     with col2[1]:
         st.metric(label="On-Time", value="{:,.0f}".format(df_pie[df_pie['Kategori Leadtime RI']=='On-Time']['Nomor IT Terima'].values[0]), delta=None)
     with col2[2]:
