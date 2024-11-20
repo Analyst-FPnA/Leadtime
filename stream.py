@@ -77,8 +77,8 @@ if 'df_internal' not in locals():
 
 def create_pie_chart(df, labels_column, values_column, title="Pie Chart"):
     color_mapping = {
-        'On-Time': px.colors.sequential.RdBu[1],  
-        'Backdate': px.colors.sequential.RdBu[0] 
+        'On-Time': [px.colors.sequential.RdBu[1]],  
+        'Backdate': [px.colors.sequential.RdBu[0]] 
     }
     fig = px.pie(
         df, 
