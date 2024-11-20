@@ -49,7 +49,7 @@ st.markdown(
     
 st.write(' ')
 
-st.markdown('## ALL MONTH')
+st.markdown('## Summary')
 st.markdown('### Outgoing Backdate')
 col = st.columns([1,2,1,2])
 with col[0]:
@@ -128,7 +128,7 @@ df = pd.DataFrame(data)
 
 # Widget untuk memilih rentang tanggal
 start_date, end_date = st.date_input(
-    "RANGE DATE ",
+    "RANGE DATE: ",
     [df["Tanggal"].min(), df["Tanggal"].max()],  # Default nilai awal
     min_value=df["Tanggal"].min(),
     max_value=df["Tanggal"].max()
