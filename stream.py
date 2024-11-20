@@ -153,7 +153,6 @@ def create_percentage_barchart(df, x_col, y_col, key=None):
     st.plotly_chart(fig, key=key)
 
         
-df_tanggal = pd.DataFrame(pd.date_range(start=pd.Timestamp(start_date), end=pd.Timestamp(end_date), freq='D'), columns=['Tanggal'])
 df_internal['Rute Global'] = pd.Categorical(df_internal['Rute Global'],['WH/DC to WH/DC','WH/DC to Resto','Resto to WH/DC','Resto to Resto'])
 df_eksternal['Tanggal PO'] = pd.to_datetime(df_eksternal['Tanggal PO'])
 df_internal['Tanggal IT Kirim'] = pd.to_datetime(df_internal['Tanggal IT Kirim'])
