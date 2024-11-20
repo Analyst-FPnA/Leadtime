@@ -75,7 +75,7 @@ if 'df_internal' not in locals():
         df_eksternal = pd.read_csv(f)
 
 
-def create_pie_chart(df, labels_column, values_column, title="Pie Chart"):
+def create_pie_chart(df, labels_column, values_column, title="Pie Chart", key=None):
     color_mapping = {
         'On-Time': px.colors.sequential.RdBu[1],  
         'Backdate': px.colors.sequential.RdBu[0] 
