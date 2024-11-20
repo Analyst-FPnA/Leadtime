@@ -4,7 +4,7 @@ def style_table(df):
     html = f"""
     <style>
         table {{
-            font-size: 10px;  /* Ganti ukuran sesuai kebutuhan */
+            font-size: 11px;  /* Ganti ukuran sesuai kebutuhan */
             width: 100%;
         }}
     </style>
