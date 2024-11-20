@@ -86,7 +86,8 @@ def create_pie_chart(df, labels_column, values_column, title="Pie Chart"):
         values=values_column, 
         title='',
         hole=0.3,
-        color_discrete_sequence=color_mapping  # Skema warna yang lebih estetis
+        color=labels_column,
+        color_discrete_map=color_mapping  # Skema warna yang lebih estetis
     )
     
     # Kustomisasi tampilan
