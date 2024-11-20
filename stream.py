@@ -159,7 +159,7 @@ df_internal['Tanggal IT Kirim'] = pd.to_datetime(df_internal['Tanggal IT Kirim']
 df_internal['Tanggal IT Terima'] = pd.to_datetime(df_internal['Tanggal IT Terima'])
 df_internal['Tanggal Kirim'] = pd.to_datetime(df_internal['Bulan Kirim'],format='%b-%y')
 df_internal['Tanggal Terima'] = pd.to_datetime(df_internal['Bulan Terima'],format='%b-%y')
-
+df_eksternal['Date PO'] = pd.to_datetime(df_eksternal['Bulan PO'],format='%b-%y')
 
 import requests
 from streamlit_option_menu import option_menu
