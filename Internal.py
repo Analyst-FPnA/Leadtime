@@ -96,7 +96,7 @@ with col[1]:
         df_internal[df_internal['Kategori Leadtime RI']=='Backdate'].groupby(['Tanggal Terima'])[['Nomor IT Terima']].nunique().reset_index(), how='left'
     )
     df_line['Nomor IT Terima'] = (df_line['Nomor IT Terima']/df_line['Total'])*100
-    create_line_chart(df_line, x_column='Tanggal IT Terima', y_column='Nomor IT Terima', title="DAILY BACKDATE")
+    create_line_chart(df_line, x_column='Tanggal Terima', y_column='Nomor IT Terima', title="DAILY BACKDATE")
 with col[2]:
     df_bar = df_internal[
              (df_internal['Kategori Leadtime RI']=='Backdate')].groupby(['Terima #2'])[['Nomor IT Terima']].nunique().reset_index()
