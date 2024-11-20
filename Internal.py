@@ -57,10 +57,11 @@ with col[0]:
     
     create_pie_chart(df_pie, labels_column='Kategori Leadtime SJ', values_column='Nomor IT Kirim', title="OUTGOING BACKDATE")
 with col[1]:
-    df_line = df_internal[
-                 (df_internal['Kategori Leadtime SJ']=='Backdate')].groupby(['Tanggal IT Kirim'])[['Nomor IT Kirim']].nunique().reset_index()
-    
-    create_line_chart(df_line, x_column='Tanggal IT Kirim', y_column='Nomor IT Kirim', title="DAILY BACKDATE")
+    df_line = df_internal.groupby(['Tanggal Kirim','Kategori Leadtime SJ'])[['Nomor IT Kirim']].nunique().reset_index().groupby('Tanggal Kirim')[['Nomor IT Kirim']].sum().reset_index().rename(columns={'Nomor IT Kirim':'Total'}).merge(
+        df_internal[df_internal['Kategori Leadtime SJ']=='Backdate'].groupby(['Tanggal Kirim'])[['Nomor IT Kirim']].nunique().reset_index(), how='left'
+    )
+    df_line['Nomor IT Kirim'] = (df_line['Nomor IT Kirim']/df_line['Total'])*100
+    create_line_chart(df_line, x_column='Tanggal Kirim', y_column='Nomor IT Kirim', title="DAILY BACKDATE")
 with col[2]:
     df_bar = df_internal[
              (df_internal['Kategori Leadtime SJ']=='Backdate')].groupby(['Kirim #2'])[['Nomor IT Kirim']].nunique().reset_index()
