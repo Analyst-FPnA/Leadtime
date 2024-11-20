@@ -170,17 +170,13 @@ list_bulan = [
         'January', 'February', 'March', 'April', 'May', 'June',
         'July', 'August', 'September', 'October', 'November', 'December']
         
-df_tanggal = pd.DataFrame(pd.date_range(start=f'{2024}-{int(pd.to_datetime(f'{bulan}-2024',format='%B-%Y').strftime('%m')):02d}-01', end=f'{2024}-{int(pd.to_datetime(f'{bulan}-2024',format='%B-%Y').strftime('%m')):02d}-28', freq='D'), columns=['Tanggal'])
-bulan = bulan[:3]+'-24'
+df_tanggal = pd.DataFrame(pd.date_range(start=pd.Timestamp(start_date), end=pd.Timestamp(end_date), freq='D'), columns=['Tanggal'])
 df_internal['Rute Global'] = pd.Categorical(df_internal['Rute Global'],['WH/DC to WH/DC','WH/DC to Resto','Resto to WH/DC','Resto to Resto'])
 df_eksternal['Tanggal PO'] = pd.to_datetime(df_eksternal['Tanggal PO'])
 df_internal['Tanggal IT Kirim'] = pd.to_datetime(df_internal['Tanggal IT Kirim'])
 df_internal['Tanggal IT Terima'] = pd.to_datetime(df_internal['Tanggal IT Terima'])
 
-if start_date and end_date:
-    # Filter DataFrame berdasarkan rentang tanggal
-    filtered_df = df[(df["Tanggal"] >= pd.Timestamp(start_date)) & (df["Tanggal"] <= pd.Timestamp(end_date))]
-    
+
 
 import requests
 from streamlit_option_menu import option_menu
