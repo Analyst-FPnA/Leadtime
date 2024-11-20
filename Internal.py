@@ -118,7 +118,22 @@ with col[3]:
              )
     styled_df = highlight_last_word(df_tabel, "Rute Global")
     st.markdown(styled_df.to_html(escape=False, index=False), unsafe_allow_html=True)
-        
+
+data = {
+    "Tanggal": pd.date_range(start="2024-01-01", end="2024-12-31", freq="D"),
+    "Penjualan": range(1, 367)
+}
+df = pd.DataFrame(data)
+
+
+# Widget untuk memilih rentang tanggal
+start_date, end_date = st.date_input(
+    "RANGE DATE ",
+    [df["Tanggal"].min(), df["Tanggal"].max()],  # Default nilai awal
+    min_value=df["Tanggal"].min(),
+    max_value=df["Tanggal"].max()
+)
+
 pic = st.selectbox("PIC RESPONSIBLE:", ['All','WH/DC','Resto'], index=0, on_change=reset_button_state)
 
 st.markdown('### Outgoing Backdate')
