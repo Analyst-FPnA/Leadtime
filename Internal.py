@@ -1,6 +1,4 @@
-def style_table(df):
-    html = df.to_html(escape=False, index=False)
-    # Tambahkan style CSS untuk mengatur ukuran font
+def style_table():
     html = f"""
     <style>
         table {{
@@ -8,9 +6,9 @@ def style_table(df):
             width: 100%;
         }}
     </style>
-    {html}
     """
     return html
+st.markdown(style_table(), unsafe_allow_html=True)
     
 def highlight_first_word(df, col_name):
     def apply_highlight(value):
