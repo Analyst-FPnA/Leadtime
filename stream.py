@@ -34,7 +34,7 @@ df = pd.DataFrame(data)
 
 # Widget untuk memilih rentang tanggal
 start_date, end_date = st.date_input(
-    "RANGE DATE",
+    "RANGE DATE ",
     [df["Tanggal"].min(), df["Tanggal"].max()],  # Default nilai awal
     min_value=df["Tanggal"].min(),
     max_value=df["Tanggal"].max()
