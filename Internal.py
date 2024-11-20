@@ -124,7 +124,7 @@ col = st.columns([1,2,1,2])
 with col[0]:
     df_pie = df_internal[(df_internal["Tanggal IT Kirim"] >= pd.Timestamp(start_date)) & (df_internal["Tanggal IT Kirim"] <= pd.Timestamp(end_date)) & (df_internal['Kirim #2'].isin(['Resto','WH/DC'] if pic=='All' else [pic]))].groupby(['Kategori Leadtime SJ'])[['Nomor IT Kirim']].nunique().reset_index()
     
-    create_pie_chart(df_pie, labels_column='Kategori Leadtime SJ', values_column='Nomor IT Kirim', title="OUTGOING BACKDATE2", key='pie1')
+    create_pie_chart(df_pie, labels_column='Kategori Leadtime SJ', values_column='Nomor IT Kirim', title="OUTGOING BACKDATE2", key='pie2')
 with col[1]:
     df_line = df_internal[(df_internal["Tanggal IT Kirim"] >= pd.Timestamp(start_date)) & (df_internal["Tanggal IT Kirim"] <= pd.Timestamp(end_date)) & (df_internal['Kirim #2'].isin(['Resto','WH/DC'] if pic=='All' else [pic]))
                  & (df_internal['Kategori Leadtime SJ']=='Backdate')].groupby(['Tanggal IT Kirim'])[['Nomor IT Kirim']].nunique().reset_index()
