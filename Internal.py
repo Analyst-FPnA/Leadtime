@@ -12,7 +12,20 @@ def highlight_first_word(df, col_name):
     styled_df[col_name] = styled_df[col_name].apply(apply_highlight)
     return styled_df
 
+def highlight_last_word(df, col_name):
+    def apply_highlight(value):
+        # Pisahkan kata-kata dalam cell
+        words = value.split()
+        # Warna hanya kata pertama
+        if words:
+            words[-1] = f"<span style='color: red;'>{words[-1]}</span>"
+        return " ".join(words)
 
+    # Terapkan fungsi highlight pada kolom yang dimaksud
+    styled_df = df.copy()
+    styled_df[col_name] = styled_df[col_name].apply(apply_highlight)
+    return styled_df
+    
 st.markdown(
     """
     <div style="background-color: #68041c; padding: 10px; border-radius: 5px; text-align: center;">
@@ -102,12 +115,12 @@ with col[3]:
     
     if pic=='Resto':
         df_tabel = df_tabel.loc[df_tabel['Rute Global'].isin(['WH/DC to Resto','Resto to Resto'])]
-        styled_df = highlight_first_word(df_tabel, "Rute Global")
+        styled_df = highlight_last_word(df_tabel, "Rute Global")
         st.markdown(styled_df.to_html(escape=False, index=False), unsafe_allow_html=True)
     elif pic=='WH/DC':
         df_tabel = df_tabel.loc[df_tabel['Rute Global'].isin(['Resto to WH/DC','WH/DC to WH/DC'])]
-        styled_df = highlight_first_word(df_tabel, "Rute Global")
+        styled_df = highlight_last_word(df_tabel, "Rute Global")
         st.markdown(styled_df.to_html(escape=False, index=False), unsafe_allow_html=True)
     else:
-        styled_df = highlight_first_word(df_tabel, "Rute Global")
+        styled_df = highlight_last_word(df_tabel, "Rute Global")
         st.markdown(styled_df.to_html(escape=False, index=False), unsafe_allow_html=True)
