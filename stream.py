@@ -76,7 +76,14 @@ if 'df_internal' not in locals():
 
 
 def create_pie_chart(df, labels_column, values_column, title="Pie Chart"):
-
+    color_mapping = {
+        'On-Time': px.colors.sequential.RdBu[1],  
+        'Backdate': px.colors.sequential.RdBu[0] 
+    }
+    
+    # Buat kolom warna berdasarkan label
+    df['Color'] = df[labels_column].map(color_mapping)
+    
     # Membuat grafik pie menggunakan Plotly
     fig = px.pie(
         df, 
@@ -84,7 +91,7 @@ def create_pie_chart(df, labels_column, values_column, title="Pie Chart"):
         values=values_column, 
         title='',
         hole=0.3,  # Membuat grafik menjadi doughnut
-        color_discrete_sequence=[px.colors.sequential.RdBu[1]]+[px.colors.sequential.RdBu[0]]  # Skema warna yang lebih estetis
+        color_discrete_sequence=color_mapping  # Skema warna yang lebih estetis
     )
     
     # Kustomisasi tampilan
