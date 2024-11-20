@@ -101,8 +101,13 @@ with col[3]:
              )
     
     if pic=='Resto':
-        st.dataframe(df_tabel.loc[df_tabel['Rute Global'].isin(['WH/DC to Resto','Resto to Resto'])],hide_index=True)
+        df_tabel = df_tabel.loc[df_tabel['Rute Global'].isin(['WH/DC to Resto','Resto to Resto'])]
+        styled_df = highlight_first_word(df_tabel, "Rute Global")
+        st.markdown(styled_df.to_html(escape=False, index=False), unsafe_allow_html=True)
     elif pic=='WH/DC':
-        st.dataframe(df_tabel.loc[df_tabel['Rute Global'].isin(['Resto to WH/DC','WH/DC to WH/DC'])],hide_index=True)
+        df_tabel = df_tabel.loc[df_tabel['Rute Global'].isin(['Resto to WH/DC','WH/DC to WH/DC'])]
+        styled_df = highlight_first_word(df_tabel, "Rute Global")
+        st.markdown(styled_df.to_html(escape=False, index=False), unsafe_allow_html=True)
     else:
-        st.dataframe(df_tabel,hide_index=True)
+        styled_df = highlight_first_word(df_tabel, "Rute Global")
+        st.markdown(styled_df.to_html(escape=False, index=False), unsafe_allow_html=True)
