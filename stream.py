@@ -82,7 +82,6 @@ def create_pie_chart(df, labels_column, values_column, title="Pie Chart"):
     }
     
     # Buat kolom warna berdasarkan label
-    df['Color'] = df[labels_column].map(color_mapping)
     
     # Membuat grafik pie menggunakan Plotly
     fig = px.pie(
@@ -90,7 +89,8 @@ def create_pie_chart(df, labels_column, values_column, title="Pie Chart"):
         names=labels_column, 
         values=values_column, 
         title='',
-        hole=0.3,  # Membuat grafik menjadi doughnut
+        hole=0.3,
+        color=labels_column,# Membuat grafik menjadi doughnut
         color_discrete_sequence=color_mapping  # Skema warna yang lebih estetis
     )
     
