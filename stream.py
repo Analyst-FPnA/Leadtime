@@ -23,7 +23,7 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-st.write(' ')
+st.write('')
 
 data = {
     "Tanggal": pd.date_range(start="2024-01-01", end="2024-12-31", freq="D"),
