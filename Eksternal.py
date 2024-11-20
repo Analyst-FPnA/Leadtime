@@ -7,6 +7,21 @@ st.markdown(
     unsafe_allow_html=True
 )
 st.write('')
+data = {
+    "Tanggal": pd.date_range(start="2024-01-01", end="2024-12-31", freq="D"),
+    "Penjualan": range(1, 367)
+}
+df = pd.DataFrame(data)
+
+
+# Widget untuk memilih rentang tanggal
+start_date, end_date = st.date_input(
+    "RANGE DATE ",
+    [df["Tanggal"].min(), df["Tanggal"].max()],  # Default nilai awal
+    min_value=df["Tanggal"].min(),
+    max_value=df["Tanggal"].max()
+)
+df_tanggal = pd.DataFrame(pd.date_range(start=pd.Timestamp(start_date), end=pd.Timestamp(end_date), freq='D'), columns=['Tanggal'])
 
 kat_eksternal = st.selectbox("KATEGORI BACKDATE:", ['PR(Create)-PO(Datang)','PO(Datang)-PO(Create)','PO(Datang)-RI(Create)'], index=0, on_change=reset_button_state)
 
