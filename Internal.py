@@ -1,3 +1,14 @@
+page_zoom_css = """
+<style>
+    body {
+        zoom: 0.9; /* Ubah nilai ini untuk zoom level lain */
+    }
+</style>
+"""
+
+# Terapkan CSS
+st.markdown(page_zoom_css, unsafe_allow_html=True)
+
 def highlight_first_word(df, col_name):
     def apply_highlight(value):
         # Pisahkan kata-kata dalam cell
