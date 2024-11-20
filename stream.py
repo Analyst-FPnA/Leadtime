@@ -26,7 +26,7 @@ st.markdown(
 st.write('')
 
 data = {
-    "Tanggal": pd.date_range(start="2024-01-01", end="2024-12-31", freq="D"),
+    "Tanggal": pd.date_range(start="2023-01-01", end="2023-12-31", freq="D"),
     "Penjualan": range(1, 366)
 }
 df = pd.DataFrame(data)
