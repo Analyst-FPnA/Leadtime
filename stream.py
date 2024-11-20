@@ -25,22 +25,6 @@ st.markdown(
 )
 st.write('')
 
-data = {
-    "Tanggal": pd.date_range(start="2024-01-01", end="2024-12-31", freq="D"),
-    "Penjualan": range(1, 367)
-}
-df = pd.DataFrame(data)
-
-
-# Widget untuk memilih rentang tanggal
-start_date, end_date = st.date_input(
-    "RANGE DATE ",
-    [df["Tanggal"].min(), df["Tanggal"].max()],  # Default nilai awal
-    min_value=df["Tanggal"].min(),
-    max_value=df["Tanggal"].max()
-)
-
-
 def download_file_from_github(url, save_path):
     response = requests.get(url)
     if response.status_code == 200:
@@ -168,9 +152,6 @@ def create_percentage_barchart(df, x_col, y_col, key=None):
     # Menampilkan grafik di Streamlit
     st.plotly_chart(fig, key=key)
 
-list_bulan = [
-        'January', 'February', 'March', 'April', 'May', 'June',
-        'July', 'August', 'September', 'October', 'November', 'December']
         
 df_tanggal = pd.DataFrame(pd.date_range(start=pd.Timestamp(start_date), end=pd.Timestamp(end_date), freq='D'), columns=['Tanggal'])
 df_internal['Rute Global'] = pd.Categorical(df_internal['Rute Global'],['WH/DC to WH/DC','WH/DC to Resto','Resto to WH/DC','Resto to Resto'])
