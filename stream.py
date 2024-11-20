@@ -109,7 +109,7 @@ def create_pie_chart(df, labels_column, values_column, title="Pie Chart", key=No
     )
     fig.update_layout(width=350, height=350)
     # Menampilkan grafik di Streamlit
-    st.plotly_chart(fig)
+    st.plotly_chart(fig, key=key)
 
 def create_line_chart(df, x_column, y_column, title="Line Chart"):
     """
