@@ -177,7 +177,8 @@ df_internal['Rute Global'] = pd.Categorical(df_internal['Rute Global'],['WH/DC t
 df_eksternal['Tanggal PO'] = pd.to_datetime(df_eksternal['Tanggal PO'])
 df_internal['Tanggal IT Kirim'] = pd.to_datetime(df_internal['Tanggal IT Kirim'])
 df_internal['Tanggal IT Terima'] = pd.to_datetime(df_internal['Tanggal IT Terima'])
-
+df_internal['Tanggal Kirim'] = pd.to_datetime(df_internal['Bulan Kirim'],format='%b-%y')
+df_internal['Tanggal Terima'] = pd.to_datetime(df_internal['Bulan Terima'],format='%b-%y')
 
 
 import requests
