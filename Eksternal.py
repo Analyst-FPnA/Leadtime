@@ -206,17 +206,18 @@ if kat_eksternal =='PO(Datang)-RI(Create)':
     with col[0]:
         df_pie = df_eksternal[ 
                  (df_eksternal['Kategori Item']=='Eksternal Logistic')].groupby(['Kategori PO(Datang)-RI(Create)'])[['Nomor PO']].nunique().reset_index()
-        create_pie_chart(df_pie, labels_column='Kategori PO(Datang)-RI(Create)', values_column='Nomor PO', title="OUTGOING BACKDATE")
+        create_pie_chart(df_pie, labels_column='Kategori PO(Datang)-RI(Create)', values_column='Nomor PO', title="OUTGOING BACKDATE", key='pie')
     with col[1]:
-        df_line = df_eksternal[
-                 (df_eksternal['Kategori PO(Datang)-RI(Create)']=='Backdate') & (df_eksternal['Kategori Item']=='Eksternal Logistic')
-                 ].groupby(['Tanggal PO'])[['Nomor PO']].nunique().reset_index()
-        df_line = df_tanggal.merge(df_line,how='left',left_on='Tanggal',right_on='Tanggal PO').fillna(0)
-        create_line_chart(df_line, x_column='Tanggal', y_column='Nomor PO', title="DAILY BACKDATE")
+        df_line = df_eksternal[(df_eksternal['Kategori Item']=='Eksternal Logistic')
+                 ].groupby(['Date PO'])[['Nomor PO']].nunique().reset_index().rename(columns={'Nomor PO':'Total'}).merge(df_eksternal[ 
+                  (df_eksternal['Kategori PO(Datang)-RI(Create)']=='Backdate') & (df_eksternal['Kategori Item']=='Eksternal Logistic')
+                 ].groupby(['Date PO'])[['Nomor PO']].nunique().reset_index(), how='left')
+        df_line['Nomor PO'] = (df_line['Nomor PO']/df_line['Total'])*100
+        create_line_chart(df_line, x_column='Date PO', y_column='Nomor PO', title="DAILY BACKDATE",key='line')
     with col[2]:
         df_bar = df_eksternal[
                  (df_eksternal['Kategori PO(Datang)-RI(Create)']=='Backdate') & (df_eksternal['Kategori Item']=='Eksternal Logistic')].groupby(['Rute'])[['Nomor PO']].nunique().reset_index()
-        create_percentage_barchart(df_bar, 'Rute', 'Nomor PO')
+        create_percentage_barchart(df_bar, 'Rute', 'Nomor PO',key='bar')
     with col[3]:
         st.write('')
         col2 = st.columns(3)
@@ -241,17 +242,18 @@ if kat_eksternal =='PO(Datang)-RI(Create)':
     with col[0]:
         df_pie = df_eksternal[ 
                   (df_eksternal['Kategori Item']=='Eksternal Resto')].groupby(['Kategori PO(Datang)-RI(Create)'])[['Nomor PO']].nunique().reset_index()
-        create_pie_chart(df_pie, labels_column='Kategori PO(Datang)-RI(Create)', values_column='Nomor PO', title="OUTGOING BACKDATE")
+        create_pie_chart(df_pie, labels_column='Kategori PO(Datang)-RI(Create)', values_column='Nomor PO', title="OUTGOING BACKDATE",key='pie1')
     with col[1]:
-        df_line = df_eksternal[
-                 (df_eksternal['Kategori PO(Datang)-RI(Create)']=='Backdate') & (df_eksternal['Kategori Item']=='Eksternal Resto')
-                 ].groupby(['Tanggal PO'])[['Nomor PO']].nunique().reset_index()
-        df_line = df_tanggal.merge(df_line,how='left',left_on='Tanggal',right_on='Tanggal PO').fillna(0)
-        create_line_chart(df_line, x_column='Tanggal', y_column='Nomor PO', title="DAILY BACKDATE")
+        df_line = df_eksternal[(df_eksternal['Kategori Item']=='Eksternal Resto')
+                 ].groupby(['Date PO'])[['Nomor PO']].nunique().reset_index().rename(columns={'Nomor PO':'Total'}).merge(df_eksternal[ 
+                  (df_eksternal['Kategori PO(Datang)-RI(Create)']=='Backdate') & (df_eksternal['Kategori Item']=='Eksternal Resto')
+                 ].groupby(['Date PO'])[['Nomor PO']].nunique().reset_index(), how='left')
+        df_line['Nomor PO'] = (df_line['Nomor PO']/df_line['Total'])*100
+        create_line_chart(df_line, x_column='Date PO', y_column='Nomor PO', title="DAILY BACKDATE",key='line1')
     with col[2]:
         df_bar = df_eksternal[
                  (df_eksternal['Kategori PO(Datang)-RI(Create)']=='Backdate') & (df_eksternal['Kategori Item']=='Eksternal Resto')].groupby(['Rute'])[['Nomor PO']].nunique().reset_index()
-        create_percentage_barchart(df_bar, 'Rute', 'Nomor PO')
+        create_percentage_barchart(df_bar, 'Rute', 'Nomor PO',key='bar1')
     with col[3]:
         st.write('')
         col2 = st.columns(3)
@@ -277,17 +279,18 @@ if kat_eksternal =='PO(Datang)-RI(Create)':
     with col[0]:
         df_pie = df_eksternal[ 
                  (df_eksternal['Kategori Item']=='Internal Logistic')].groupby(['Kategori PO(Datang)-RI(Create)'])[['Nomor PO']].nunique().reset_index()
-        create_pie_chart(df_pie, labels_column='Kategori PO(Datang)-RI(Create)', values_column='Nomor PO', title="OUTGOING BACKDATE")
+        create_pie_chart(df_pie, labels_column='Kategori PO(Datang)-RI(Create)', values_column='Nomor PO', title="OUTGOING BACKDATE",key='pie2')
     with col[1]:
-        df_line = df_eksternal[
-                 (df_eksternal['Kategori PO(Datang)-RI(Create)']=='Backdate') & (df_eksternal['Kategori Item']=='Internal Logistic')
-                 ].groupby(['Tanggal PO'])[['Nomor PO']].nunique().reset_index()
-        df_line = df_tanggal.merge(df_line,how='left',left_on='Tanggal',right_on='Tanggal PO').fillna(0)
-        create_line_chart(df_line, x_column='Tanggal', y_column='Nomor PO', title="DAILY BACKDATE")
+        df_line = df_eksternal[(df_eksternal['Kategori Item']=='Internal Logistic')
+                 ].groupby(['Date PO'])[['Nomor PO']].nunique().reset_index().rename(columns={'Nomor PO':'Total'}).merge(df_eksternal[ 
+                  (df_eksternal['Kategori PO(Datang)-RI(Create)']=='Backdate') & (df_eksternal['Kategori Item']=='Internal Logistic')
+                 ].groupby(['Date PO'])[['Nomor PO']].nunique().reset_index(), how='left')
+        df_line['Nomor PO'] = (df_line['Nomor PO']/df_line['Total'])*100
+        create_line_chart(df_line, x_column='Date PO', y_column='Nomor PO', title="DAILY BACKDATE",key='line2')
     with col[2]:
         df_bar = df_eksternal[
                  (df_eksternal['Kategori PO(Datang)-RI(Create)']=='Backdate') & (df_eksternal['Kategori Item']=='Internal Logistic')].groupby(['Rute'])[['Nomor PO']].nunique().reset_index()
-        create_percentage_barchart(df_bar, 'Rute', 'Nomor PO')
+        create_percentage_barchart(df_bar, 'Rute', 'Nomor PO', key='bar2')
     with col[3]:
         st.write('')
         col2 = st.columns(3)
