@@ -8,7 +8,7 @@ st.markdown(
 )
 st.write('')
 
-kat_eksternal = st.selectbox("KATEGORI BACKDATE:", ['PO(Datang)-PR(Create)','PO(Datang)-PO(Create)','PO(Datang)-RI(Create)'], index=0, on_change=reset_button_state)
+kat_eksternal = st.selectbox("KATEGORI BACKDATE:", ['PR(Create)-PO(Datang)','PO(Datang)-PO(Create)','PO(Datang)-RI(Create)'], index=0, on_change=reset_button_state)
 
 if kat_eksternal =='PR(Create)-PO(Datang)':
     st.markdown('### PR(Create)-PO(Datang)')
