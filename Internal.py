@@ -1,3 +1,4 @@
+font_size = '10px'
 page_zoom_css = """
 <style>
     body {
