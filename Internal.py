@@ -49,7 +49,7 @@ st.markdown(
     
 st.write(' ')
 
-
+st.markdown('## ALL MONTH')
 st.markdown('### Outgoing Backdate')
 col = st.columns([1,2,1,2])
 with col[0]:
@@ -92,9 +92,10 @@ with col[0]:
     
     create_pie_chart(df_pie, labels_column='Kategori Leadtime RI', values_column='Nomor IT Terima', title="INCOMING BACKDATE")
 with col[1]:
-    df_line = df_internal[
-                 (df_internal['Kategori Leadtime RI']=='Backdate')].groupby(['Tanggal IT Terima'])[['Nomor IT Terima']].nunique().reset_index()
-    
+    df_line = df_internal.groupby(['Tanggal Terima','Kategori Leadtime RI'])[['Nomor IT Terima']].nunique().reset_index().groupby('Tanggal Terima')[['Nomor IT Terima']].sum().reset_index().rename(columns={'Nomor IT Terima':'Total'}).merge(
+        df_internal[df_internal['Kategori Leadtime RI']=='Backdate'].groupby(['Tanggal Terima'])[['Nomor IT Terima']].nunique().reset_index(), how='left'
+    )
+    df_line['Nomor IT Terima'] = (df_line['Nomor IT Kirim']/df_line['Total'])*100
     create_line_chart(df_line, x_column='Tanggal IT Terima', y_column='Nomor IT Terima', title="DAILY BACKDATE")
 with col[2]:
     df_bar = df_internal[
