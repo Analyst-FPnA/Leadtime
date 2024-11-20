@@ -111,7 +111,7 @@ def create_pie_chart(df, labels_column, values_column, title="Pie Chart", key=No
     # Menampilkan grafik di Streamlit
     st.plotly_chart(fig, key=key)
 
-def create_line_chart(df, x_column, y_column, title="Line Chart"):
+def create_line_chart(df, x_column, y_column, title="Line Chart", key=None):
     """
     Membuat grafik garis (line chart) dengan Plotly dan menampilkannya di Streamlit.
     
@@ -136,9 +136,9 @@ def create_line_chart(df, x_column, y_column, title="Line Chart"):
     )
     fig.update_layout(width=500, height=350)
     # Menampilkan grafik di Streamlit
-    st.plotly_chart(fig)
+    st.plotly_chart(fig, key=key)
 
-def create_percentage_barchart(df, x_col, y_col):
+def create_percentage_barchart(df, x_col, y_col, key=None):
     # Menghitung persentase berdasarkan y_col
     df['Percentage'] = (df[y_col] / df[y_col].sum()) * 100
 
@@ -166,7 +166,7 @@ def create_percentage_barchart(df, x_col, y_col):
     )
     
     # Menampilkan grafik di Streamlit
-    st.plotly_chart(fig)
+    st.plotly_chart(fig, key=key)
 
 list_bulan = [
         'January', 'February', 'March', 'April', 'May', 'June',
