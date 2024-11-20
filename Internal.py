@@ -84,38 +84,14 @@ with col[3]:
     if pic =='Resto':
         df_tabel = df_tabel.loc[df_tabel['Rute Global'].isin(['Resto to WH/DC','Resto to Resto'])]
         styled_df = highlight_first_word(df_tabel, "Rute Global")
-        styled_table = f"""
-        <style>
-            table {{
-                font-size: {font_size};
-            }}
-        </style>
-        {styled_df.to_html(escape=False, index=False)}
-        """
-        st.markdown(styled_table, unsafe_allow_html=True)
+        st.markdown(styled_df.to_html(escape=False, index=False), unsafe_allow_html=True)
     elif pic=='WH/DC':
         df_tabel = df_tabel.loc[df_tabel['Rute Global'].isin(['WH/DC to WH/DC','WH/DC to Resto'])]
         styled_df = highlight_first_word(df_tabel, "Rute Global")
-        styled_table = f"""
-        <style>
-            table {{
-                font-size: {font_size};
-            }}
-        </style>
-        {styled_df.to_html(escape=False, index=False)}
-        """
-        st.markdown(styled_table, unsafe_allow_html=True)
+        st.markdown(styled_df.to_html(escape=False, index=False), unsafe_allow_html=True)
     else:
         styled_df = highlight_first_word(df_tabel, "Rute Global")
-        styled_table = f"""
-        <style>
-            table {{
-                font-size: {font_size};
-            }}
-        </style>
-        {styled_df.to_html(escape=False, index=False)}
-        """
-        st.markdown(styled_table, unsafe_allow_html=True)
+        st.markdown(styled_df.to_html(escape=False, index=False), unsafe_allow_html=True)
 
 
 st.markdown('### Incoming Backdate')
